@@ -1,23 +1,21 @@
 fn main() {
-    let hello = String::from("Hello, world!");
+    let s = String::from("Hello, world!");
     
-    let word = first_word(&hello);
+    let hello = first_word(&s);
 
-    println!("word is {}", word);
+    println!("slice of word is {}", hello);
 }
 
 
-fn first_word(s: &String) -> usize {
+fn first_word(s: &String) -> &str {
     let bytes = s.as_bytes();
     
     for (i, &item) in bytes.iter().enumerate() {
-        println!("current item is: {}", &item );
-         if item == b' ' {
-            println!("i is: {}", i );
-             
-            return i;
+        if item == b' ' {
+            return &s[..i]
         }
     }
+
+    &s[..]
     
-    s.len()
 }
